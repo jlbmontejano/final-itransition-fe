@@ -1,0 +1,62 @@
+import {
+	BasicTemplateInfo,
+	CreateTemplate,
+	FetchResponse,
+	FullTemplateInfo,
+	LoginCredentials,
+	Metadata,
+	SignUpCredentials,
+	UpdateLike,
+	User,
+} from "@/types";
+import fetchApi from "./api";
+
+export const signupUser = (data: SignUpCredentials) =>
+	fetchApi<FetchResponse<User>>("/signup", { method: "POST", body: data });
+
+export const loginUser = (data: LoginCredentials) =>
+	fetchApi<FetchResponse<User>>("/login", { method: "POST", body: data });
+
+export const getUser = (id: string) => fetchApi<User>(`/users/${id}`);
+
+export const getUsers = () => fetchApi<User[]>("/users");
+
+export const deleteUser = (id: string) =>
+	fetchApi(`/users/${id}`, {
+		method: "DELETE",
+	});
+
+export const getTopics = () =>
+	fetchApi("/topics", {
+		method: "GET",
+	});
+
+export const getMetadata = () =>
+	fetchApi<FetchResponse<Metadata>>("/metadata", {
+		method: "GET",
+	});
+
+export const createTemplate = (data: CreateTemplate) =>
+	fetchApi("/templates", {
+		method: "POST",
+		body: data,
+	});
+
+export const getTemplate = (id: string) =>
+	fetchApi<FetchResponse<FullTemplateInfo>>(`/templates/${id}`, {
+		method: "GET",
+	});
+
+export const getTemplates = () =>
+	fetchApi<FetchResponse<BasicTemplateInfo[]>>("/templates", { method: "GET" });
+
+export const getUserTemplates = (id: string) =>
+	fetchApi<FetchResponse<BasicTemplateInfo[]>>(`/users/${id}/templates`, {
+		method: "GET",
+	});
+
+export const updateTemplateLikes = (data: UpdateLike) =>
+	fetchApi<FetchResponse<null>>(`/likes`, {
+		method: "PUT",
+		body: data,
+	});
