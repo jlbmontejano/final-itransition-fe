@@ -1,11 +1,9 @@
-import { Button } from "@/components/ui/button";
-import { ToastAction } from "@/components/ui/toast";
+import { useEffect, useState } from "react";
 import { useUserContext } from "@/context/userContext";
-import { toast } from "@/hooks/use-toast";
-import { ROUTES } from "@/lib/constants/routes";
 import { updateTemplateLikes } from "@/lib/fetch";
-import { useEffect } from "react";
-import { BiLike, BiSolidLike } from "react-icons/bi";
+import { toast } from "@/hooks/use-toast";
+import { ToastAction } from "@/components/ui/toast";
+import { ROUTES } from "@/lib/constants/routes";
 import { useNavigate } from "react-router";
 
 const TEXT = {
@@ -19,32 +17,25 @@ const TEXT = {
 	},
 };
 
-type LikesProps = {
-	templateId: number;
-	likedUsersIds: number[];
-	likesCount: number;
-	setLikesCount: React.Dispatch<React.SetStateAction<number>>;
-	liked: boolean;
-	setLiked: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-const Likes = ({
+export const useLikes = ({
 	templateId,
 	likedUsersIds,
-	likesCount,
-	setLikesCount,
-	liked,
-	setLiked,
-}: LikesProps) => {
+	initialLikesCount,
+}: {
+	templateId: number;
+	likedUsersIds: number[];
+	initialLikesCount: number;
+}) => {
 	const { user, language } = useUserContext();
 	const navigate = useNavigate();
+	const [likesCount, setLikesCount] = useState(initialLikesCount);
+	const [liked, setLiked] = useState(false);
 
 	useEffect(() => {
 		if (!user) {
 			setLiked(false);
 			return;
 		}
-
 		setLiked(likedUsersIds.includes(user.id));
 	}, [user, likedUsersIds]);
 
@@ -67,23 +58,12 @@ const Likes = ({
 				userId: user.id,
 			});
 
-			setLiked(!liked);
-			setLikesCount(likesCount + (liked ? -1 : 1));
+			setLiked(prev => !prev);
+			setLikesCount(prev => prev + (liked ? -1 : 1));
 		} catch (err) {
 			console.log(err);
 		}
 	};
-	return (
-		<div className='flex items-center'>
-			<Button
-				onClick={handleUpdateLike}
-				variant='ghost'
-				className='size-fit p-1'>
-				{liked ? <BiSolidLike /> : <BiLike />}
-			</Button>
-			<p className='pl-1'>{likesCount}</p>
-		</div>
-	);
-};
 
-export default Likes;
+	return { likesCount, liked, handleUpdateLike };
+};

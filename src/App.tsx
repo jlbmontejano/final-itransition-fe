@@ -5,17 +5,17 @@ import SignupForm from "@/components/shared/auth/SignupForm";
 import Header from "@/components/shared/Header";
 import Protected from "@/components/shared/Protected";
 import { Toaster } from "@/components/ui/toaster";
-import { useAuthContext } from "@/context";
+import { useUserContext } from "@/context/userContext";
 import { ROUTES } from "@/lib/constants/routes";
 import CreateTemplate from "@/pages/CreateTemplate";
 import Error from "@/pages/Error";
-import FillTemplate from "@/pages/FillTemplate";
+import UseTemplate from "@/pages/UseTemplate";
 import Profile from "@/pages/Profile";
 import Settings from "@/pages/Settings";
 import TemplatePreview from "@/pages/TemplatePreview";
 
 function App() {
-	const { darkMode } = useAuthContext();
+	const { darkMode } = useUserContext();
 
 	return (
 		<main
@@ -34,7 +34,10 @@ function App() {
 					<Route element={<Protected />}>
 						<Route path={ROUTES.PROFILE} element={<Profile />} />
 						<Route path={ROUTES.CREATE_TEMPLATE} element={<CreateTemplate />} />
-						<Route path={ROUTES.FILL_TEMPLATE} element={<FillTemplate />} />
+						<Route
+							path={`${ROUTES.USE_TEMPLATE}/:id`}
+							element={<UseTemplate />}
+						/>
 					</Route>
 					<Route path={ROUTES.ERROR} element={<Error />} />
 				</Routes>

@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { FormItem, FormLabel } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useUserContext } from "@/context/userContext";
 import { toast } from "@/hooks/use-toast";
 import React, { useState } from "react";
 import BadgesController from "./Badges";
-import { useAuthContext } from "@/context";
 
 const TEXT = {
 	en: {
@@ -30,7 +30,7 @@ const Autocomplete = ({
 	selectedItems,
 	setSelectedItems,
 }: AutocompleteProps) => {
-	const { language } = useAuthContext();
+	const { language } = useUserContext();
 	const [autocompleteVisible, setAutocompleteVisible] = useState(false);
 	const [userInput, setUserInput] = useState<string>("");
 	const [filteredItems, setFilteredItems] = useState<string[]>(items);

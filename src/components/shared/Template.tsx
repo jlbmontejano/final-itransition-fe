@@ -7,7 +7,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import { useAuthContext } from "@/context";
+import { useUserContext } from "@/context/userContext";
 import { ROUTES } from "@/lib/constants/routes";
 import { BasicTemplateInfo } from "@/types";
 import { useState } from "react";
@@ -28,7 +28,7 @@ const TEXT = {
 };
 
 const Template = ({ template }: { template: BasicTemplateInfo }) => {
-	const { language } = useAuthContext();
+	const { language } = useUserContext();
 	const navigate = useNavigate();
 	const [liked, setLiked] = useState(false);
 	const [likesCount, setLikesCount] = useState(template.likesCount);
@@ -69,10 +69,10 @@ const Template = ({ template }: { template: BasicTemplateInfo }) => {
 				<Likes
 					templateId={template.id}
 					likedUsersIds={template.likedUsersIds}
-					likesCount={likesCount}
-					setLikesCount={setLikesCount}
 					liked={liked}
 					setLiked={setLiked}
+					likesCount={likesCount}
+					setLikesCount={setLikesCount}
 				/>
 			</CardFooter>
 		</Card>

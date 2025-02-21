@@ -1,13 +1,16 @@
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router";
 import App from "./App.tsx";
-import { AuthProvider } from "./context/index.tsx";
+import { TemplateProvider } from "./context/templateContext.tsx";
+import { UserProvider } from "./context/userContext.tsx";
 import "./globals.css";
 
 createRoot(document.getElementById("root")!).render(
 	<BrowserRouter>
-		<AuthProvider>
-			<App />
-		</AuthProvider>
+		<UserProvider>
+			<TemplateProvider>
+				<App />
+			</TemplateProvider>
+		</UserProvider>
 	</BrowserRouter>
 );

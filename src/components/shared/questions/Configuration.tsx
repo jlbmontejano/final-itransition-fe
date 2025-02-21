@@ -4,7 +4,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import { useState } from "react";
 import BadgesController from "../Badges";
-import { useAuthContext } from "@/context";
+import { useUserContext } from "@/context/userContext";
 
 const TEXT = {
 	en: {
@@ -38,7 +38,7 @@ const Configuration = ({
 	setOptions,
 	questionType,
 }: ConfigurationProps) => {
-	const { language } = useAuthContext();
+	const { language } = useUserContext();
 	const [optionInput, setOptionInput] = useState<string>("");
 
 	const handleQuestionInput = (event: React.ChangeEvent<HTMLInputElement>) => {

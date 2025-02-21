@@ -1,7 +1,7 @@
 import Loader from "@/components/shared/Loader";
 import Template from "@/components/shared/Template";
 import { Button } from "@/components/ui/button";
-import { useAuthContext } from "@/context";
+import { useUserContext } from "@/context/userContext";
 import { useHandleError } from "@/hooks/useHandleError";
 import { ROUTES } from "@/lib/constants/routes";
 import { getUserTemplates } from "@/lib/fetch";
@@ -27,7 +27,7 @@ const TEXT = {
 };
 
 const Profile = () => {
-	const { user, language } = useAuthContext();
+	const { user, language } = useUserContext();
 	const navigate = useNavigate();
 	const [userTemplates, setUserTemplates] = useState<BasicTemplateInfo[]>([]);
 	const [isLoading, setIsLoading] = useState(true);

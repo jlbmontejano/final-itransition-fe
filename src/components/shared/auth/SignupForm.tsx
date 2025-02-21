@@ -15,7 +15,7 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useAuthContext } from "@/context";
+import { useUserContext } from "@/context/userContext";
 import { toast } from "@/hooks/use-toast";
 import { ROUTES } from "@/lib/constants/routes";
 import { signupUser } from "@/lib/fetch";
@@ -52,7 +52,7 @@ const TEXT = {
 };
 
 const SignupForm = () => {
-	const { setUser, language } = useAuthContext();
+	const { setUser, language } = useUserContext();
 	const [isLoading, setIsLoading] = useState(false);
 	const navigate = useNavigate();
 

@@ -1,15 +1,14 @@
-import Likes from "@/components/shared/Likes";
 import Loader from "@/components/shared/Loader";
 import Display from "@/components/shared/questions/Display";
-import { Badge } from "@/components/ui/badge";
+import TemplateInformation from "@/components/shared/TemplateInformation";
 import { Button } from "@/components/ui/button";
 import { ToastAction } from "@/components/ui/toast";
-import { useAuthContext } from "@/context";
+import { useTemplateContext } from "@/context/templateContext";
+import { useUserContext } from "@/context/userContext";
 import { toast } from "@/hooks/use-toast";
 import { useHandleError } from "@/hooks/useHandleError";
 import { ROUTES } from "@/lib/constants/routes";
 import { getTemplate } from "@/lib/fetch";
-import { FullTemplateInfo } from "@/types";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import Error from "./Error";
@@ -41,12 +40,11 @@ const TEXT = {
 
 const TemplatePreview = () => {
 	const { id } = useParams();
-	const { user, language } = useAuthContext();
+	const { user, language } = useUserContext();
+	const { currentTemplate, setCurrentTemplate } = useTemplateContext();
 	const navigate = useNavigate();
 	const handleError = useHandleError();
 	const [isLoading, setIsLoading] = useState(true);
-	const [currentTemplate, setCurrentTemplate] = useState<FullTemplateInfo>();
-	const [liked, setLiked] = useState(false);
 	const [likesCount, setLikesCount] = useState(0);
 
 	useEffect(() => {
@@ -59,7 +57,7 @@ const TemplatePreview = () => {
 
 			try {
 				const { data } = await getTemplate(id);
-				setCurrentTemplate(data);
+				setCurrentTemplate(data!);
 				setLikesCount(data!.likesCount);
 			} catch (err) {
 				console.log(err);
@@ -84,54 +82,27 @@ const TemplatePreview = () => {
 			});
 			return;
 		}
-		// navigate("/");
+		navigate(`${ROUTES.USE_TEMPLATE}/${currentTemplate!.id}`);
 	};
 
 	if (isLoading) return <Loader />;
 	if (!currentTemplate) return <Error />;
 
 	return (
-		<div className='flex flex-col md:flex-row gap-8 w-full'>
-			<div>
-				<p className='text-2xl font-bold'>{currentTemplate.title}</p>
-				<div className=''>
-					<p>
-						<span className='font-semibold'>{TEXT[language].AUTHOR}:</span>{" "}
-						{currentTemplate.creator.name}
-					</p>
-					<p>
-						<span className='font-semibold'>{TEXT[language].TOPIC}:</span>{" "}
-						{currentTemplate.topic.text}
-					</p>
-					<p>
-						<span className='font-semibold'>{TEXT[language].DESCRIPTION}:</span>{" "}
-						{currentTemplate.description}
-					</p>
-				</div>
-				<div className='flex items-center justify-between my-2'>
-					<div className='flex flex-wrap gap-1'>
-						{currentTemplate.tags.map((tag, idx) => (
-							<Badge key={`tag-${idx}`}>{tag.text}</Badge>
-						))}
-					</div>
-					<Likes
-						templateId={currentTemplate.id}
-						likedUsersIds={currentTemplate.likedUsersIds}
-						likesCount={likesCount}
-						setLikesCount={setLikesCount}
-						liked={liked}
-						setLiked={setLiked}
-					/>
-				</div>
-				<div className='flex items-center justify-center mt-4'>
-					<Button onClick={handleUseTemplate}>
-						{TEXT[language].USE_TEMPLATE}
-					</Button>
-				</div>
+		<div className='flex flex-col md:flex-row gap-4 w-full'>
+			<div className='flex flex-col justify-center'>
+				<TemplateInformation
+					likesCount={likesCount}
+					setLikesCount={setLikesCount}
+				/>
+				<Button className='place-self-center mt-4' onClick={handleUseTemplate}>
+					{TEXT[language].USE_TEMPLATE}
+				</Button>
 			</div>
+
 			<div className='flex-1'>
 				<p className='text-2xl font-bold'>{TEXT[language].QUESTIONS}:</p>
-				<Display questions={currentTemplate.questions} />
+				<Display />
 			</div>
 		</div>
 	);

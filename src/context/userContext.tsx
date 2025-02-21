@@ -7,7 +7,7 @@ import {
 	useState,
 } from "react";
 
-type AuthContext = {
+type UserContext = {
 	user: User | null;
 	setUser: React.Dispatch<React.SetStateAction<User | null>>;
 	darkMode: boolean;
@@ -16,9 +16,9 @@ type AuthContext = {
 	setLanguage: React.Dispatch<React.SetStateAction<"en" | "es">>;
 };
 
-const AuthContext = createContext<AuthContext | undefined>(undefined);
+const UserContext = createContext<UserContext | undefined>(undefined);
 
-export const AuthProvider = ({ children }: { children: ReactNode }) => {
+export const UserProvider = ({ children }: { children: ReactNode }) => {
 	const [user, setUser] = useState<User | null>(null);
 	const [darkMode, setDarkMode] = useState(
 		() => localStorage.getItem("darkMode") === "true"
@@ -44,13 +44,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 		setLanguage,
 	};
 
-	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+	return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
 
-export const useAuthContext = () => {
-	const context = useContext(AuthContext);
+export const useUserContext = () => {
+	const context = useContext(UserContext);
 	if (!context) {
-		throw new Error("useAuthContext must be used within an AuthProvider");
+		throw new Error("useUserContext must be used within an UserProvider");
 	}
 	return context;
 };

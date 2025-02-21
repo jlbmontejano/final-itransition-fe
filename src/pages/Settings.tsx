@@ -8,7 +8,7 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import { useAuthContext } from "@/context";
+import { useUserContext } from "@/context/userContext";
 import { toast } from "@/hooks/use-toast";
 import { ROUTES } from "@/lib/constants/routes";
 import { useNavigate } from "react-router";
@@ -32,7 +32,7 @@ const TEXT = {
 
 const Settings = () => {
 	const { user, setUser, darkMode, setDarkMode, language, setLanguage } =
-		useAuthContext();
+		useUserContext();
 	const navigate = useNavigate();
 
 	const handleLanguageChange = (value: string) => {

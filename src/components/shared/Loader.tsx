@@ -1,4 +1,4 @@
-import { useAuthContext } from "@/context";
+import { useUserContext } from "@/context/userContext";
 import { ClipLoader } from "react-spinners";
 
 const TEXT = {
@@ -11,7 +11,7 @@ const TEXT = {
 };
 
 const Loader = () => {
-	const { language, darkMode } = useAuthContext();
+	const { language, darkMode } = useUserContext();
 
 	return (
 		<div className='flex flex-col flex-1 justify-center items-center gap-4 '>

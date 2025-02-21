@@ -20,7 +20,7 @@ import { Question } from "@/types";
 import { useEffect, useState } from "react";
 import QuestionConfiguration from "./Configuration";
 import { toast } from "@/hooks/use-toast";
-import { useAuthContext } from "@/context";
+import { useUserContext } from "@/context/userContext";
 
 const TEXT = {
 	en: {
@@ -52,7 +52,7 @@ type DialogWindowProps = {
 };
 
 const DialogWindow = ({ setQuestions }: DialogWindowProps) => {
-	const { language } = useAuthContext();
+	const { language } = useUserContext();
 	const [open, setOpen] = useState(false);
 	const [questionInput, setQuestionInput] = useState<string>("");
 	const [questionType, setQuestionType] = useState<

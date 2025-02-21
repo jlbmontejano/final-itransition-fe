@@ -1,6 +1,6 @@
 import Loader from "@/components/shared/Loader";
 import Template from "@/components/shared/Template";
-import { useAuthContext } from "@/context";
+import { useUserContext } from "@/context/userContext";
 import { getTemplates } from "@/lib/fetch";
 import { BasicTemplateInfo } from "@/types";
 import { useEffect, useState } from "react";
@@ -17,7 +17,7 @@ const TEXT = {
 };
 
 const Home = () => {
-	const { language } = useAuthContext();
+	const { language } = useUserContext();
 	const [availableTemplates, setAvailableTemplates] = useState<
 		BasicTemplateInfo[]
 	>([]);

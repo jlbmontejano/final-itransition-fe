@@ -7,5 +7,5 @@ export const ROUTES = {
 	SETTINGS: "/settings",
 	CREATE_TEMPLATE: "/create-template",
 	TEMPLATE_PREVIEW: "/template-preview",
-	FILL_TEMPLATE: "/fill-template",
+	USE_TEMPLATE: "/use-template",
 };

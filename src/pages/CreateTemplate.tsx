@@ -18,7 +18,7 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { useAuthContext } from "@/context";
+import { useUserContext } from "@/context/userContext";
 import { toast } from "@/hooks/use-toast";
 import { ROUTES } from "@/lib/constants/routes";
 import { createTemplate, getMetadata } from "@/lib/fetch";
@@ -61,7 +61,7 @@ const TEXT = {
 };
 
 const CreateTemplate = () => {
-	const { user, language } = useAuthContext();
+	const { user, language } = useUserContext();
 	const navigate = useNavigate();
 	const [topics, setTopics] = useState<Topic[]>([]);
 	const [tags, setTags] = useState<string[]>([]);
@@ -193,7 +193,7 @@ const CreateTemplate = () => {
 					{questions.length === 0 ? (
 						<p>{TEXT[language].NO_QUESTIONS}</p>
 					) : (
-						<Display questions={questions} />
+						<Display />
 					)}
 					<QuestionDialog setQuestions={setQuestions} />
 					<Button type='submit' disabled={questions.length === 0}>
