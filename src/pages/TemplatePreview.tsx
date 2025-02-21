@@ -1,3 +1,4 @@
+import Likes from "@/components/shared/Likes";
 import Loader from "@/components/shared/Loader";
 import Display from "@/components/shared/questions/Display";
 import { Badge } from "@/components/ui/badge";
@@ -10,8 +11,8 @@ import { ROUTES } from "@/lib/constants/routes";
 import { getTemplate } from "@/lib/fetch";
 import { FullTemplateInfo } from "@/types";
 import { useEffect, useState } from "react";
-import { BiLike } from "react-icons/bi";
 import { useNavigate, useParams } from "react-router";
+import Error from "./Error";
 
 const TEXT = {
 	en: {
@@ -45,18 +46,21 @@ const TemplatePreview = () => {
 	const handleError = useHandleError();
 	const [isLoading, setIsLoading] = useState(true);
 	const [currentTemplate, setCurrentTemplate] = useState<FullTemplateInfo>();
+	const [liked, setLiked] = useState(false);
+	const [likesCount, setLikesCount] = useState(0);
 
 	useEffect(() => {
 		async function fetchTemplate() {
 			if (!id) {
 				handleError(TEXT[language].NO_ID_ERROR);
+				setIsLoading(false);
 				return;
 			}
 
 			try {
 				const { data } = await getTemplate(id);
-				console.log(data);
 				setCurrentTemplate(data);
+				setLikesCount(data!.likesCount);
 			} catch (err) {
 				console.log(err);
 				handleError(TEXT[language].FETCH_ERROR);
@@ -83,7 +87,8 @@ const TemplatePreview = () => {
 		// navigate("/");
 	};
 
-	if (isLoading || !currentTemplate) return <Loader />;
+	if (isLoading) return <Loader />;
+	if (!currentTemplate) return <Error />;
 
 	return (
 		<div className='flex flex-col md:flex-row gap-8 w-full'>
@@ -109,10 +114,14 @@ const TemplatePreview = () => {
 							<Badge key={`tag-${idx}`}>{tag.text}</Badge>
 						))}
 					</div>
-					<div className='flex items-center'>
-						<BiLike />
-						<p className='pl-1'>{currentTemplate.likesCount}</p>
-					</div>
+					<Likes
+						templateId={currentTemplate.id}
+						likedUsersIds={currentTemplate.likedUsersIds}
+						likesCount={likesCount}
+						setLikesCount={setLikesCount}
+						liked={liked}
+						setLiked={setLiked}
+					/>
 				</div>
 				<div className='flex items-center justify-center mt-4'>
 					<Button onClick={handleUseTemplate}>

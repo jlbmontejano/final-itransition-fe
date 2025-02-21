@@ -38,15 +38,13 @@ const Likes = ({
 }: LikesProps) => {
 	const { user, language } = useAuthContext();
 	const navigate = useNavigate();
-	// const [liked, setLiked] = useState(false);
-	// const [likesCount, setLikesCount] = useState(template.likesCount);
 
 	useEffect(() => {
-		if (!user || !likedUsersIds.includes(user.id)) {
+		if (!user) {
 			setLiked(false);
-		} else {
-			setLiked(true);
+			return;
 		}
+		setLiked(likedUsersIds.includes(user.id));
 	}, [user, likedUsersIds]);
 
 	const handleUpdateLike = async () => {
@@ -62,13 +60,17 @@ const Likes = ({
 			return;
 		}
 
-		await updateTemplateLikes({
-			templateId: templateId,
-			userId: user.id,
-		});
+		try {
+			await updateTemplateLikes({
+				templateId: templateId,
+				userId: user.id,
+			});
 
-		setLiked(!liked);
-		setLikesCount(likesCount + (liked ? -1 : 1));
+			setLiked(!liked);
+			setLikesCount(likesCount + (liked ? -1 : 1));
+		} catch (err) {
+			console.log(err);
+		}
 	};
 	return (
 		<div className='flex items-center'>
