@@ -84,7 +84,7 @@ const Autocomplete = ({
 						<li
 							key={index}
 							onClick={() => handleAutocomplete(filteredItem)}
-							className='hover:bg-gray-200 hover:cursor-pointer px-2'>
+							className='hover:bg-gray-200 hover:cursor-pointer px-2 hover:dark:text-black'>
 							{filteredItem}
 						</li>
 					))}
