@@ -97,3 +97,14 @@
     @apply z-50 border rounded absolute bg-background p-1 shadow-lg
   }
 }
+
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
