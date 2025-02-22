@@ -1,4 +1,3 @@
-import { Badge } from "@/components/ui/badge";
 import {
 	Card,
 	CardContent,
@@ -10,9 +9,9 @@ import {
 import { useUserContext } from "@/context/userContext";
 import { ROUTES } from "@/lib/constants/routes";
 import { BasicTemplateInfo } from "@/types";
-import { useState } from "react";
 import { useNavigate } from "react-router";
 import Likes from "./Likes";
+import Badges from "./Badges";
 
 const TEXT = {
 	en: {
@@ -30,8 +29,6 @@ const TEXT = {
 const Template = ({ template }: { template: BasicTemplateInfo }) => {
 	const { language } = useUserContext();
 	const navigate = useNavigate();
-	const [liked, setLiked] = useState(false);
-	const [likesCount, setLikesCount] = useState(template.likesCount);
 
 	return (
 		<Card className='w-full'>
@@ -57,9 +54,7 @@ const Template = ({ template }: { template: BasicTemplateInfo }) => {
 			<CardFooter className='flex gap-2 items-center justify-between'>
 				<div className='flex flex-wrap gap-1'>
 					{template.tags.length > 0 ? (
-						template.tags.map((tag, idx) => (
-							<Badge key={`tag-${idx}`}>{tag.text}</Badge>
-						))
+						<Badges items={template.tags} />
 					) : (
 						<p className='text-xs text-muted-foreground'>
 							{TEXT[language].NO_TAGS}
@@ -69,10 +64,7 @@ const Template = ({ template }: { template: BasicTemplateInfo }) => {
 				<Likes
 					templateId={template.id}
 					likedUsersIds={template.likedUsersIds}
-					liked={liked}
-					setLiked={setLiked}
-					likesCount={likesCount}
-					setLikesCount={setLikesCount}
+					initialLikesCount={template.likesCount}
 				/>
 			</CardFooter>
 		</Card>
