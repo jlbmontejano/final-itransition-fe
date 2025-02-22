@@ -4,30 +4,35 @@ import { IoIosClose } from "react-icons/io";
 
 type BadgesProps = {
 	items: string[];
-	setItems: React.Dispatch<React.SetStateAction<string[]>>;
+	setItems?: React.Dispatch<React.SetStateAction<string[]>>;
+	canRemoveItems?: boolean;
 };
 
-const Badges = ({ items, setItems }: BadgesProps) => {
+const Badges = ({
+	items,
+	setItems = () => {},
+	canRemoveItems = false,
+}: BadgesProps) => {
 	const handleRemoveBadge = (idx: number) => {
 		setItems(prev => prev.filter((_, i) => i !== idx));
 	};
 
 	return (
-		<>
-			<div className='flex flex-wrap gap-1'>
-				{items.map((item, idx) => (
-					<Badge className='px-1' key={`${item}-${idx}`}>
-						{item}
+		<div className='flex flex-wrap gap-1'>
+			{items.map((item, idx) => (
+				<Badge key={`${item}-${idx}`}>
+					{item}
+					{canRemoveItems && (
 						<Button
 							type='button'
 							onClick={() => handleRemoveBadge(idx)}
 							className='size-fit p-0'>
-							<IoIosClose />
+							<IoIosClose className='dark:text-black' />
 						</Button>
-					</Badge>
-				))}
-			</div>
-		</>
+					)}
+				</Badge>
+			))}
+		</div>
 	);
 };
 
