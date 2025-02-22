@@ -32,11 +32,6 @@ export type Topic = {
 	text: string;
 };
 
-export type Tag = {
-	id: number | null;
-	text: string;
-};
-
 export type Metadata = {
 	topics: Topic[];
 	tags: string[];
