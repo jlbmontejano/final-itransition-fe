@@ -11,7 +11,7 @@ export type BasicTemplateInfo = {
 	description: string;
 	creator: User;
 	topic: Topic;
-	tags: Tag[];
+	tags: string[];
 	// comments: Comment[]
 	likedUsersIds: number[];
 	likesCount: number;
