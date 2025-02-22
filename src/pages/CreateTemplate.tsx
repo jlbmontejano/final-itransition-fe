@@ -1,6 +1,9 @@
 import Autocomplete from "@/components/shared/Autocomplete";
 import { Button } from "@/components/ui/button";
 
+import Loader from "@/components/shared/Loader";
+import QuestionDialog from "@/components/shared/questions/DialogWindow";
+import Display from "@/components/shared/questions/Display";
 import {
 	Form,
 	FormControl,
@@ -29,9 +32,6 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { z } from "zod";
-import QuestionDialog from "@/components/shared/questions/DialogWindow";
-import Display from "@/components/shared/questions/Display";
-import Loader from "@/components/shared/Loader";
 
 const TEXT = {
 	en: {
@@ -42,8 +42,8 @@ const TEXT = {
 		TAGS: "Tags",
 		TAGS_BUTTON: "Add tag",
 		NO_QUESTIONS: "No questions added yet",
-		SUBMIT: "Submit Template",
-		TOAST_SUCESS: "Template created successfully",
+		SUBMIT: "Create Template",
+		TOAST_SUCCESS: "Template created successfully",
 		CREATE_ERROR: "There's been an error, please try again",
 	},
 	es: {
@@ -55,7 +55,7 @@ const TEXT = {
 		TAGS_BUTTON: "Agregar etiqueta",
 		NO_QUESTIONS: "No se han agregado preguntas aún",
 		SUBMIT: "Crear plantilla",
-		TOAST_SUCESS: "Se ha creado tu plantilla",
+		TOAST_SUCCESS: "Se ha creado tu plantilla",
 		CREATE_ERROR: "Ha ocurrido un error, por favor vuelva a intentarlo",
 	},
 };
@@ -107,7 +107,7 @@ const CreateTemplate = () => {
 				creatorId: user!.id,
 			});
 
-			toast({ description: TEXT[language].TOAST_SUCESS });
+			toast({ description: TEXT[language].TOAST_SUCCESS });
 			navigate(ROUTES.PROFILE);
 		} catch (err) {
 			console.log(err);
@@ -193,7 +193,7 @@ const CreateTemplate = () => {
 					{questions.length === 0 ? (
 						<p>{TEXT[language].NO_QUESTIONS}</p>
 					) : (
-						<Display />
+						<Display questions={questions} />
 					)}
 					<QuestionDialog setQuestions={setQuestions} />
 					<Button type='submit' disabled={questions.length === 0}>
