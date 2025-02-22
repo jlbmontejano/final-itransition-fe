@@ -1,38 +1,33 @@
-import { useTemplateContext } from "@/context/templateContext";
 import { useUserContext } from "@/context/userContext";
-import { ROUTES } from "@/lib/constants/routes";
-import { useNavigate } from "react-router";
+import { Question } from "@/types";
 
 const TEXT = {
 	en: {
-		TEXT: "Text",
-		TYPE: "Type",
+		TEXT: "Question Text",
+		TYPE: "Question Type",
 		OPTIONS: "Options",
 	},
 	es: {
-		TEXT: "Texto",
-		TYPE: "Tipo",
+		TEXT: "Texto de la pregunta",
+		TYPE: "Tipo de pregunta",
 		OPTIONS: "Opciones",
 	},
 };
 
-const Display = () => {
+type DisplayProps = {
+	questions: Question[];
+};
+
+const Display = ({ questions }: DisplayProps) => {
 	const { language } = useUserContext();
-	const { currentTemplate } = useTemplateContext();
-	const navigate = useNavigate();
 
 	const capitalizaString = (questionType: string) => {
 		return questionType.charAt(0) + questionType.slice(1).toLowerCase();
 	};
 
-	if (!currentTemplate) {
-		navigate(ROUTES.ERROR);
-		return;
-	}
-
 	return (
-		<>
-			{currentTemplate.questions.map(({ text, type, options }, idx) => (
+		<div className='flex flex-col gap-4'>
+			{questions.map(({ text, type, options }, idx) => (
 				<div key={`${text}-${idx}`}>
 					<p>
 						<span className='font-semibold'>{TEXT[language].TEXT}: </span>{" "}
@@ -58,7 +53,7 @@ const Display = () => {
 					)}
 				</div>
 			))}
-		</>
+		</div>
 	);
 };
 
