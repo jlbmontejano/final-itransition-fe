@@ -1,9 +1,8 @@
-import { Badge } from "../ui/badge";
-import { useUserContext } from "@/context/userContext";
 import { useTemplateContext } from "@/context/templateContext";
+import { useUserContext } from "@/context/userContext";
 import Error from "@/pages/Error";
 import Likes from "./Likes";
-import { useState } from "react";
+import Badges from "./Badges";
 
 const TEXT = {
 	en: {
@@ -32,23 +31,14 @@ const TEXT = {
 	},
 };
 
-type TemplateInformationProps = {
-	likesCount: number;
-	setLikesCount: React.Dispatch<React.SetStateAction<number>>;
-};
-
-const TemplateInformation = ({
-	likesCount,
-	setLikesCount,
-}: TemplateInformationProps) => {
+const TemplateInformation = () => {
 	const { language } = useUserContext();
 	const { currentTemplate } = useTemplateContext();
-	const [liked, setLiked] = useState(false);
 
 	if (!currentTemplate) return <Error />;
 
 	return (
-		<div>
+		<div className='md:max-w-[400px]'>
 			<p className='text-2xl font-bold'>{currentTemplate.title}</p>
 			<div className=''>
 				<p>
@@ -64,12 +54,10 @@ const TemplateInformation = ({
 					{currentTemplate.description}
 				</p>
 			</div>
-			<div className='flex items-center justify-between my-2'>
-				<div className='flex flex-wrap gap-1'>
+			<div className='flex items-center my-2'>
+				<div className='flex flex-wrap gap-1 mr-4'>
 					{currentTemplate.tags.length > 0 ? (
-						currentTemplate.tags.map((tag, idx) => (
-							<Badge key={`tag-${idx}`}>{tag.text}</Badge>
-						))
+						<Badges items={currentTemplate.tags} />
 					) : (
 						<p className='text-xs'>{TEXT[language].NO_TAGS}</p>
 					)}
@@ -77,10 +65,7 @@ const TemplateInformation = ({
 				<Likes
 					templateId={currentTemplate.id}
 					likedUsersIds={currentTemplate.likedUsersIds}
-					liked={liked}
-					setLiked={setLiked}
-					likesCount={likesCount}
-					setLikesCount={setLikesCount}
+					initialLikesCount={currentTemplate.likesCount}
 				/>
 			</div>
 		</div>
