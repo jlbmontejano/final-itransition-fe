@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { useUserContext } from "@/context/userContext";
 import { toast } from "@/hooks/use-toast";
 import React, { useState } from "react";
-import BadgesController from "./Badges";
+import Badges from "./Badges";
 
 const TEXT = {
 	en: {
@@ -90,7 +90,11 @@ const Autocomplete = ({
 					))}
 				</ul>
 			)}
-			<BadgesController items={selectedItems} setItems={setSelectedItems} />
+			<Badges
+				items={selectedItems}
+				setItems={setSelectedItems}
+				canRemoveItems={true}
+			/>
 			<Button type='button' onClick={handleAddBadge}>
 				{buttonText}
 			</Button>
