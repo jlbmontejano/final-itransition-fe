@@ -27,8 +27,9 @@ const TEXT = {
 };
 
 const Template = ({ template }: { template: BasicTemplateInfo }) => {
-	const { language } = useUserContext();
+	const { user, language } = useUserContext();
 	const navigate = useNavigate();
+	console.log(user);
 
 	return (
 		<Card className='w-full'>
