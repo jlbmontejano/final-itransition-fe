@@ -15,9 +15,6 @@ import Error from "./Error";
 
 const TEXT = {
 	en: {
-		AUTHOR: "Author",
-		TOPIC: "Topic",
-		DESCRIPTION: "Description",
 		QUESTIONS: "Questions",
 		USE_TEMPLATE: "Use this template",
 		NO_ID_ERROR: "No template ID found",
@@ -26,9 +23,6 @@ const TEXT = {
 		LOGIN: "Log In",
 	},
 	es: {
-		AUTHOR: "Autor",
-		TOPIC: "Tema",
-		DESCRIPTION: "Descripción",
 		QUESTIONS: "Preguntas",
 		USE_TEMPLATE: "Usar esta plantilla",
 		NO_ID_ERROR: "No se encontró el ID de la plantilla",
@@ -45,7 +39,7 @@ const TemplatePreview = () => {
 	const navigate = useNavigate();
 	const handleError = useHandleError();
 	const [isLoading, setIsLoading] = useState(true);
-	const [likesCount, setLikesCount] = useState(0);
+	const [, setLikesCount] = useState(0);
 
 	useEffect(() => {
 		async function fetchTemplate() {
@@ -89,20 +83,16 @@ const TemplatePreview = () => {
 	if (!currentTemplate) return <Error />;
 
 	return (
-		<div className='flex flex-col md:flex-row gap-4 w-full'>
-			<div className='flex flex-col justify-center'>
-				<TemplateInformation
-					likesCount={likesCount}
-					setLikesCount={setLikesCount}
-				/>
+		<div className='flex flex-col md:flex-row gap-8 w-full'>
+			<div className='flex flex-col'>
+				<TemplateInformation />
 				<Button className='place-self-center mt-4' onClick={handleUseTemplate}>
 					{TEXT[language].USE_TEMPLATE}
 				</Button>
 			</div>
-
 			<div className='flex-1'>
 				<p className='text-2xl font-bold'>{TEXT[language].QUESTIONS}:</p>
-				<Display />
+				<Display questions={currentTemplate.questions} />
 			</div>
 		</div>
 	);
