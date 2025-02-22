@@ -68,7 +68,7 @@ export type UpdateLike = {
 	userId: number;
 };
 
-enum Role {
+export enum Role {
 	USER,
 	ADMIN,
 }

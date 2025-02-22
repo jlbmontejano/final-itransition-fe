@@ -55,6 +55,11 @@ export const getUserTemplates = (id: string) =>
 		method: "GET",
 	});
 
+export const deleteTemplate = (id: string) =>
+	fetchApi<FetchResponse<null>>(`/templates/${id}`, {
+		method: "DELETE",
+	});
+
 export const updateTemplateLikes = (data: UpdateLike) =>
 	fetchApi<FetchResponse<null>>(`/likes`, {
 		method: "PUT",
