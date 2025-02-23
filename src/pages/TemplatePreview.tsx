@@ -12,7 +12,6 @@ import { deleteTemplate, getTemplate } from "@/lib/fetch";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import Error from "./Error";
-import { Role } from "@/types";
 
 const TEXT = {
 	en: {
@@ -127,7 +126,7 @@ const TemplatePreview = () => {
 					<Button onClick={handleUseTemplate}>
 						{TEXT[language].USE_TEMPLATE}
 					</Button>
-					{(user?.role === Role.ADMIN ||
+					{(user?.role === "ADMIN" ||
 						currentTemplate.creator.id === user?.id) && (
 						<Button onClick={() => setDeleteConfirmation(true)}>
 							{TEXT[language].DELETE_TEMPLATE}
