@@ -24,7 +24,7 @@ const TEXT = {
 		NO: "No",
 		NO_ID_ERROR: "No template ID found",
 		FETCH_ERROR: "No template found",
-		DELETE_SUCCESS: "Error deleting this template",
+		DELETE_SUCCESS: "Template deleted successfully",
 		DELETE_ERROR: "Error deleting this template",
 		TOAST_DESCRIPTION: "You must be logged in.",
 		LOGIN: "Log In",
