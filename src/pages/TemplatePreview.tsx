@@ -80,6 +80,14 @@ const TemplatePreview = () => {
 		fetchTemplate();
 	}, [id, language]);
 
+	console.log("[user.Role === ADMIN] ", user?.role === "ADMIN");
+	console.log(
+		"[currentTemplate creator === user",
+		currentTemplate?.creator.id === user?.id
+	);
+	console.log("[currentTemplate]", currentTemplate);
+	console.log("[user]", user);
+
 	const handleUseTemplate = () => {
 		if (!user) {
 			toast({
