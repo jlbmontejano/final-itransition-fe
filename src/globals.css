@@ -81,6 +81,10 @@
     @apply bg-zinc-900 dark:bg-zinc-900 text-white flex items-center justify-between p-2
   }
 
+  .footer {
+    @apply bg-zinc-900 dark:bg-zinc-900 text-white flex items-center justify-center p-2
+  }
+
   .container {
     @apply flex flex-col gap-4 items-center justify-center
   }
@@ -104,6 +108,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
