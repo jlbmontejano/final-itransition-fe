@@ -18,3 +18,11 @@ export const templateSchema = z.object({
 });
 
 export const questionSchema = z.string().min(1, "Tag is required");
+
+export const ticketSchema = z.object({
+	reportedBy: z.string().email(),
+	templateTitle: z.string(),
+	link: z.string(),
+	priority: z.string(),
+	status: z.string(),
+});

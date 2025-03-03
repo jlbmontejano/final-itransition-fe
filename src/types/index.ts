@@ -21,6 +21,22 @@ export type FullTemplateInfo = BasicTemplateInfo & {
 	questions: Question[];
 };
 
+export type BasicFormInfo = {
+	id: number;
+	title: string;
+	description: string;
+	creator: User;
+	createdAt: Date;
+};
+
+export type FullFormInfo = BasicFormInfo & {
+	creator: User;
+	topic: Topic;
+	tags: string[];
+	likedUsersIds: number[];
+	likesCount: number;
+};
+
 export type Question = {
 	text: string;
 	type: "TEXT" | "MULTITEXT" | "NUMBER" | "CHECKBOX";

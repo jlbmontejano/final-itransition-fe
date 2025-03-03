@@ -8,4 +8,5 @@ export const ROUTES = {
 	CREATE_TEMPLATE: "/create-template",
 	TEMPLATE_PREVIEW: "/template-preview",
 	USE_TEMPLATE: "/use-template",
+	CREATE_TICKET: "/create-ticket",
 };

@@ -1,4 +1,5 @@
 import {
+	BasicFormInfo,
 	BasicTemplateInfo,
 	CreateTemplate,
 	FetchResponse,
@@ -52,6 +53,11 @@ export const getTemplates = () =>
 
 export const getUserTemplates = (id: string) =>
 	fetchApi<FetchResponse<BasicTemplateInfo[]>>(`/users/${id}/templates`, {
+		method: "GET",
+	});
+
+export const getUserForms = (id: string) =>
+	fetchApi<FetchResponse<BasicFormInfo[]>>(`/users/${id}/forms`, {
 		method: "GET",
 	});
 
