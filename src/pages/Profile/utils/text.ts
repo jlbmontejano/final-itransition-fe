@@ -1,3 +1,16 @@
+export const PROFILE_TEXT = {
+	en: {
+		TEMPLATES: "Templates",
+		FORMS: "Forms",
+		TICKETS: "Tickets",
+	},
+	es: {
+		TEMPLATES: "Plantillas",
+		FORMS: "Respuestas",
+		TICKETS: "Tickets",
+	},
+};
+
 export const TEMPLATES_TEXT = {
 	en: {
 		PAGE_TITLE: "My Templates",
