@@ -33,7 +33,7 @@ const Home = () => {
 
 	return (
 		<div className='container'>
-			<p className='page-title'>{TEXT[language].AVAILABLE_TEMPLATES}</p>
+			<p className='page-title'>{TEXT[language].PAGE_TITLE}</p>
 			{availableTemplates.length > 0 ? (
 				<div className='templates-grid'>
 					{availableTemplates.map((template: BasicTemplateInfo) => (
