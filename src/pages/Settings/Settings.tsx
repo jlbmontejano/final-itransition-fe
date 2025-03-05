@@ -36,9 +36,7 @@ const Settings = () => {
 	return (
 		<div className='container max-w-[600px] h-full'>
 			<div className='w-full h-full flex flex-col gap-4'>
-				<p className='text-2xl text-center font-semibold'>
-					{TEXT[language].SETTINGS}
-				</p>
+				<p className='page-title'>{TEXT[language].PAGE_TITLE}</p>
 				<div className='w-full flex justify-between items-center'>
 					<Label>{TEXT[language].LANGUAGE}</Label>
 					<Select
