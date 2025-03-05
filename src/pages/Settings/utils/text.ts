@@ -1,13 +1,13 @@
 const TEXT = {
 	en: {
-		SETTINGS: "Settings",
+		PAGE_TITLE: "Settings",
 		LANGUAGE: "Language",
 		DARK_MODE: "Dark Mode",
 		LOGOUT: "Log Out",
 		SUCESS: "Log out successful",
 	},
 	es: {
-		SETTINGS: "Ajustes",
+		PAGE_TITLE: "Ajustes",
 		LANGUAGE: "Idioma",
 		DARK_MODE: "Modo Oscuro",
 		LOGOUT: "Cerrar Sesión",
