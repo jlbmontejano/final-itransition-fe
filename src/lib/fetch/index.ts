@@ -2,6 +2,7 @@ import {
 	BasicFormInfo,
 	BasicTemplateInfo,
 	CreateTemplate,
+	CreateTicket,
 	FetchResponse,
 	FullTemplateInfo,
 	LoginCredentials,
@@ -69,5 +70,17 @@ export const deleteTemplate = (id: string) =>
 export const updateTemplateLikes = (data: UpdateLike) =>
 	fetchApi<FetchResponse<null>>(`/likes`, {
 		method: "PUT",
+		body: data,
+	});
+
+export const getUserTickets = (email: string) =>
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	fetchApi<FetchResponse<any>>(`/tickets/${email}`, {
+		method: "GET",
+	});
+
+export const createTicket = (data: CreateTicket) =>
+	fetchApi<FetchResponse<null>>(`/tickets`, {
+		method: "POST",
 		body: data,
 	});
