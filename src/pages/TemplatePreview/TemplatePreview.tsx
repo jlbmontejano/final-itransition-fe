@@ -35,6 +35,7 @@ const TemplatePreview = () => {
 
 			try {
 				const { data } = await getTemplate(id);
+
 				setCurrentTemplate(data!);
 				setLikesCount(data!.likesCount);
 			} catch (err) {
@@ -46,6 +47,10 @@ const TemplatePreview = () => {
 		}
 
 		fetchTemplate();
+
+		return () => {
+			setCurrentTemplate(null);
+		};
 	}, [id, language]);
 
 	const handleUseTemplate = () => {
