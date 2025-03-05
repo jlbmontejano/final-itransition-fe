@@ -1,7 +1,6 @@
 import Autocomplete from "@/components/shared/Autocomplete/Autocomplete";
 import Display from "@/components/shared/Display/Display";
 import Loader from "@/components/shared/Loader/Loader";
-import DialogWindow from "@/pages/CreateTemplate/components/DialogWindow";
 import { Button } from "@/components/ui/button";
 import {
 	Form,
@@ -31,6 +30,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { z } from "zod";
+import DialogWindow from "./components/DialogWindow";
 import { CREATE_TEMPLATE_TEXT as TEXT } from "./utils/text";
 
 const CreateTemplate = () => {
@@ -94,9 +94,7 @@ const CreateTemplate = () => {
 
 	return (
 		<div className='w-full max-w-[500px]'>
-			<p className='text-2xl font-semibold text-center mb-4'>
-				{TEXT[language].CREATE_TEMPLATE}
-			</p>
+			<p className='page-title'>{TEXT[language].PAGE_TITLE}</p>
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
