@@ -26,6 +26,7 @@ const UserTemplates = () => {
 				}
 
 				const { data } = await getUserTemplates(user.id.toString());
+
 				setUserTemplates(data!);
 			} catch (err) {
 				console.log(err);
