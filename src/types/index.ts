@@ -84,6 +84,20 @@ export type UpdateLike = {
 	userId: number;
 };
 
+export type Ticket = {
+	summary: string;
+	status: string;
+	urlKey: string;
+};
+
+export type CreateTicket = {
+	email: string;
+	link: string;
+	title?: string;
+	summary: string;
+	priority: string;
+};
+
 export enum Role {
 	USER = "USER",
 	ADMIN = "ADMIN",
