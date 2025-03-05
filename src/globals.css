@@ -94,7 +94,7 @@
   }
 
   .page-title {
-    @apply text-xl text-center font-semibold pb-2 dark:text-white
+    @apply text-2xl text-center font-semibold pb-4 dark:text-white
   }
 
   .autocomplete-dropdown {

@@ -23,7 +23,7 @@ function App() {
 		<main
 			className={`${darkMode && "dark bg-zinc-900"} h-screen flex flex-col`}>
 			<Header />
-			<div className='flex flex-col flex-1 items-center dark:bg-zinc-900 p-8'>
+			<div className='flex flex-col flex-1 items-center dark:bg-zinc-900 px-8 py-4'>
 				<Routes>
 					<Route path={ROUTES.HOME} element={<Home />} />
 					<Route path={ROUTES.SIGNUP} element={<Signup />} />
