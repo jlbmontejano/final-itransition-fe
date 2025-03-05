@@ -1,16 +1,18 @@
 const TEXT = {
 	en: {
-		REPORTED_BY: "Reported by",
-		TEMPLATE_TITLE: "Template title (if applicable)",
+		PAGE_TITLE: "Create Ticket",
+		SUMMARY: "Summary",
 		PRIORITY: "Priority",
 		SUBMIT_BUTTON: "Create ticket",
+		TOAST_SUCESS: "Ticket created successfully",
 		TOAST_ERROR: "Error creating ticket",
 	},
 	es: {
-		REPORTED_BY: "Reportado por",
-		TEMPLATE_TITLE: "Título de la plantilla (si aplica)",
+		PAGE_TITLE: "Crear Ticket",
+		SUMMARY: "Resúmen",
 		PRIORITY: "Prioridad",
 		SUBMIT_BUTTON: "Crear ticket",
+		TOAST_SUCESS: "Ticket creado exitósamente",
 		TOAST_ERROR: "Error al crear ticket",
 	},
 };
