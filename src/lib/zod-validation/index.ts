@@ -20,9 +20,9 @@ export const templateSchema = z.object({
 export const questionSchema = z.string().min(1, "Tag is required");
 
 export const ticketSchema = z.object({
-	reportedBy: z.string().email(),
-	templateTitle: z.string(),
+	email: z.string().email(),
 	link: z.string(),
+	title: z.string(),
+	summary: z.string().min(1, "Please provide more information"),
 	priority: z.string(),
-	status: z.string(),
 });
