@@ -1,6 +1,6 @@
 export const CREATE_TEMPLATE_TEXT = {
 	en: {
-		CREATE_TEMPLATE: "Create your own template!",
+		PAGE_TITLE: "Create your own template!",
 		TITLE: "Title",
 		DESCRIPTION: "Description",
 		TOPIC: "Topic",
@@ -12,7 +12,7 @@ export const CREATE_TEMPLATE_TEXT = {
 		CREATE_ERROR: "There's been an error, please try again",
 	},
 	es: {
-		CREATE_TEMPLATE: "¡Crea tu propia plantilla!",
+		PAGE_TITLE: "¡Crea tu propia plantilla!",
 		TITLE: "Título",
 		DESCRIPTION: "Descripción",
 		TOPIC: "Tema",
