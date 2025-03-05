@@ -6,8 +6,12 @@ import {
 } from "@/components/ui/card";
 import { Ticket } from "@/types";
 import { Link } from "react-router";
+import TEXT from "./utils/text";
+import { useUserContext } from "@/context/userContext";
 
 const TicketCard = ({ summary, status, urlKey }: Ticket) => {
+	const { language } = useUserContext();
+
 	const urlConstructor = () =>
 		`${import.meta.env.VITE_TICKET_URL_FIRSTPART}
 	${urlKey}
@@ -22,7 +26,9 @@ const TicketCard = ({ summary, status, urlKey }: Ticket) => {
 					</Link>
 				</CardTitle>
 				<CardDescription>
-					<p className='text-xs'>Status: {status}</p>
+					<p className='text-xs'>
+						{TEXT[language].STATUS}: {status}
+					</p>
 				</CardDescription>
 			</CardHeader>
 		</Card>
